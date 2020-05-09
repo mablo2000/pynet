@@ -23,16 +23,24 @@ cisco3 = {
     "password": password,
     "device_type": "cisco_ios"
 }
+cisco4 = {
+    "host": "cisco4.lasthop.io",
+    "username": "pyclass",
+    "password": password,
+    "device_type": "cisco_ios"
+}
 
-device_list = (nxos1, nxos2)
-for device in device_list:
-    net_connect = ConnectHandler(**device)
-    print(net_connect.find_prompt())
-    net_connect.disconnect()
-
-net_connect= ConnectHandler(**cisco3)
-output = net_connect.send_command('show version')
-
-fout = open('show_version.txt', 'w')
-fout.write(output)
+net_connect= ConnectHandler(**cisco4)
+output = net_connect.send_command_timing('ping', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
+output += net_connect.send_command_timing('8.8.8.8', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
+output = net_connect.send_command_timing('\n', strip_prompt=False, strip_command=False)
 net_connect.disconnect()
+
+print()
+print(output)
+print()
