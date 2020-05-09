@@ -17,7 +17,6 @@ nxos2 = {
     "username": "pyclass",
     "password": password,
     "device_type": "cisco_nxos",
-    "global_delay_factor": 2
 }
 cisco3 = {
     "host": "cisco3.lasthop.io",
@@ -32,25 +31,18 @@ cisco4 = {
     "device_type": "cisco_ios"
 }
 
-cmd = "show lldp neighbors detail"
-net_connect= ConnectHandler(**nxos2)
+net_connect= ConnectHandler(**cisco4)
 
-start_time = datetime.now()
-output = net_connect.send_command(cmd)
-end_time = datetime.now()
+cmd = "show version"
+output = net_connect.send_command(cmd, use_textfsm=True)
 print()
 print(output)
 print()
-print("Execution Time: {}".format(end_time - start_time))
-print()
 
-start_time = datetime.now()
-output = net_connect.send_command(cmd, delay_factor=8)
-end_time = datetime.now()
+cmd = "show lldp neighbors"
+output = net_connect.send_command(cmd, use_textfsm=True)
 print()
 print(output)
-print()
-print("Execution Time: {}".format(end_time - start_time))
 print()
 
 net_connect.disconnect()
