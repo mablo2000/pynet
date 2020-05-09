@@ -44,5 +44,5 @@ output = net_connect.send_command(cmd, use_textfsm=True)
 print()
 print(output)
 print()
-
+print('Remote interface:', output[0]['local_interface'])
 net_connect.disconnect()
