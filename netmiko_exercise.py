@@ -38,7 +38,7 @@ output += net_connect.send_command('\n', strip_prompt=False, strip_command=False
 output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'Timeout')
 output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'Extended')
 output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'Sweep')
-output += net_connect.send_command('\n', strip_prompt=False, strip_command=False)
+output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'#')
 net_connect.disconnect()
 
 print()
