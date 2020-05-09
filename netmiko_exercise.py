@@ -31,7 +31,7 @@ cisco4 = {
 }
 
 net_connect= ConnectHandler(**cisco4)
-output = net_connect.send_command('ping', strip_prompt=False, strip_command=False, expect_string=r'Protocol')
+output = net_connect.send_command('ping', strip_command=False, expect_string=r'Protocol')
 output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'IP address')
 output += net_connect.send_command('8.8.8.8', strip_prompt=False, strip_command=False, expect_string=r'Repeat')
 output += net_connect.send_command('\n', strip_prompt=False, strip_command=False, expect_string=r'Datagram')
