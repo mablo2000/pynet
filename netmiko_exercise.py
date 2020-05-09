@@ -31,18 +31,22 @@ cisco4 = {
     "device_type": "cisco_ios"
 }
 
-net_connect= ConnectHandler(**cisco4)
+net_connect= ConnectHandler(**cisco3)
 
-cmd = "show version"
-output = net_connect.send_command(cmd, use_textfsm=True)
+cmd = ["ip name-server 1.1.1.1", "ip name-server 1.0.0.1", "ip domain-lookup"]
+start_time = datetime.now()
+output = net_connect.send_config_set(cmd)
+end_time = datetime.now()
+print()
+print(output)
+print()
+print('Execution Time: {}'.format(end_time - start_time))
+print()
+
+cmd = "ping google.com"
+output = net_connect.send_command(cmd)
 print()
 print(output)
 print()
 
-cmd = "show lldp neighbors"
-output = net_connect.send_command(cmd, use_textfsm=True)
-print()
-print(output)
-print()
-print('Remote interface:', output[0]['local_interface'])
 net_connect.disconnect()
