@@ -32,22 +32,15 @@ cisco4 = {
     "device_type": "cisco_ios"
 }
 
-net_connect= ConnectHandler(**cisco3)
+config_file = 'nxos_vlans.cfg'
+nxos = [nxos1,nxos2]
+for router in nxos:
+    net_connect= ConnectHandler(**router)
 
-cmd = ["ip name-server 1.1.1.1", "ip name-server 1.0.0.1", "ip domain-lookup"]
-start_time = datetime.now()
-output = net_connect.send_config_set(cmd)
-end_time = datetime.now()
-print()
-print(output)
-print()
-print('Execution Time: {}'.format(end_time - start_time))
-print()
+    output = net_connect.send_config_from_file(config_file)
+    output += net_connect.save_config()
+    print()
+    print(output)
+    print()
 
-cmd = "ping google.com"
-output = net_connect.send_command(cmd)
-print()
-print(output)
-print()
-
-net_connect.disconnect()
+    net_connect.disconnect()
