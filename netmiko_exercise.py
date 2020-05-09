@@ -2,7 +2,7 @@
 
 from netmiko import ConnectHandler
 from getpass import getpass
-from datetime import datetime
+import time
 
 password = getpass()
 
@@ -29,18 +29,26 @@ cisco4 = {
     "host": "cisco4.lasthop.io",
     "username": "pyclass",
     "password": password,
-    "device_type": "cisco_ios"
+    "secret": password,
+    "device_type": "cisco_ios",
+    "session_log": "my_output.txt"
 }
 
-config_file = 'nxos_vlans.cfg'
-nxos = [nxos1,nxos2]
-for router in nxos:
-    net_connect= ConnectHandler(**router)
+net_connect= ConnectHandler(**cisco4)
 
-    output = net_connect.send_config_from_file(config_file)
-    output += net_connect.save_config()
-    print()
-    print(output)
-    print()
-
-    net_connect.disconnect()
+output = net_connect.find_prompt()
+print(output)
+net_connect.config_mode()
+output = net_connect.find_prompt()
+print(output)
+net_connect.exit_config_mode()
+output = net_connect.find_prompt()
+print(output)
+net_connect.write_channel('disable\n')
+time.sleep(2)
+output = net_connect.read_channel()
+print(output)
+net_connect.enable()
+output = net_connect.find_prompt()
+print(output)
+net_connect.disconnect()
