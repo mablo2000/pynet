@@ -2,7 +2,7 @@
 
 from netmiko import ConnectHandler
 from getpass import getpass
-import datetime
+from datetime import datetime
 
 password = getpass()
 
