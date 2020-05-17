@@ -17,6 +17,7 @@ arp_entries = []
 
 for line in show_arp_data.splitlines():
     if 'Protocol' not in line and line != '\n':
+        print(line)
         protocol, ip_address, age, mac_address, type, interface = line.split()
         entry_dict = {"mac_addr": mac_address, "ip_addr": ip_address, "interface": interface}
         arp_entries.append(entry_dict)
