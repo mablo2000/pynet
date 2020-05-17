@@ -16,8 +16,7 @@ Internet  10.220.88.38 161  0002.00ff.0001  ARPA  Gi0/0/0
 arp_entries = []
 
 for line in show_arp_data.splitlines():
-    if 'Protocol' not in line and line != '\n':
-        print(line)
+    if 'Protocol' not in line and line != '':
         protocol, ip_address, age, mac_address, type, interface = line.split()
         entry_dict = {"mac_addr": mac_address, "ip_addr": ip_address, "interface": interface}
         arp_entries.append(entry_dict)
