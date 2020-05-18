@@ -31,6 +31,6 @@ cisco_cfg = CiscoConfParse(bgp_config_snippet.splitlines())
 neighbors = cisco_cfg.find_objects_w_child(parentspec=r'^\s+neighbor', childspec=r'remote-as')
 for neighbor in neighbors:
     neighbor_ip = neighbor.text.split()[1]
-    remote_as = neighbor.re_search_children(r'remote-as')[0].split()[1]
+    remote_as = neighbor.re_search_children(r'remote-as')[0].text.split()[1]
     peer_list.append((neighbor_ip, remote_as))
 pprint(peer_list)
