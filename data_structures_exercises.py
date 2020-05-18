@@ -12,20 +12,11 @@ device_list = [
     {'device_name': 'arista2', 'hostname': 'arista2.lasthop.io', 'username': 'myname', 'password': 'mypass'},
 ]
 
-myfile = 'napalm_unit_test.json'
-ipv4_list = []
-ipv6_list = []
+myfile = 'arista_arp.json'
+arp_entries = dict()
 with open(myfile, 'r') as fin:
-    napalm_unit_test = json.load(fin)
-for interface, interface_dict in napalm_unit_test.items():
-    for protocol in interface_dict.keys():
-        if protocol == 'ipv4':
-            for ip_address, address_dict in interface_dict[protocol].items():
-                prefix_length = address_dict['prefix_length']
-                ipv4_list.append(ip_address + '/' + str(prefix_length))
-        elif protocol == 'ipv6':
-            for ip_address, address_dict in interface_dict[protocol].items():
-                prefix_length = address_dict['prefix_length']
-                ipv6_list.append(ip_address + '/' + str(prefix_length))
-pprint(ipv4_list)
-pprint(ipv6_list)
+    arp_output = json.load(fin)
+v4_neighbors_list = arp_output['ipV4Neighbors']
+for arp_entry in v4_neighbors_list:
+    arp_entries[arp_entry['address']] = arp_entry['hwAddress']
+pprint(arp_entries)
