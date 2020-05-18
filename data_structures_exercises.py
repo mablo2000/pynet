@@ -5,7 +5,7 @@ PyPlus Class 3 Exercises
 from pprint import pprint
 import yaml
 from netmiko import ConnectHandler
-from CiscoConfParse import CiscoConfParse
+from ciscoconfparse import CiscoConfParse
 
 myfile = '../.netmiko.yml'
 with open(myfile, 'r') as fin:
