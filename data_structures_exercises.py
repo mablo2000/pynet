@@ -13,9 +13,9 @@ device_list = [
 ]
 
 myfile = 'device_list.yaml'
-with open('w', myfile) as fout:
+with open(myfile, 'w') as fout:
     yaml.dump(device_list, myfile, default_flow_style=True, indent=4)
 
-with open('r', myfile) as fin:
+with open(myfile, 'r') as fin:
     device_list = yaml.load(fin)
 pprint(device_list)
