@@ -22,8 +22,8 @@ for interface, interface_dict in napalm_unit_test.items():
         if protocol == 'ipv4':
             for ip_address, address_dict in interface_dict[protocol].items():
                 prefix_length = address_dict['prefix_length']
-                ipv4_list.append(ip_address + '/' + prefix_length)
+                ipv4_list.append(ip_address + '/' + str(prefix_length))
         elif protocol == 'ipv6':
             for ip_address, address_dict in interface_dict[protocol].items():
                 prefix_length = address_dict['prefix_length']
-                ipv6_list.append(ip_address + '/' + prefix_length)
+                ipv6_list.append(ip_address + '/' + str(prefix_length))
