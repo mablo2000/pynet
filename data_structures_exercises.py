@@ -27,3 +27,5 @@ for interface, interface_dict in napalm_unit_test.items():
             for ip_address, address_dict in interface_dict[protocol].items():
                 prefix_length = address_dict['prefix_length']
                 ipv6_list.append(ip_address + '/' + str(prefix_length))
+pprint(ipv4_list)
+pprint(ipv6_list)
