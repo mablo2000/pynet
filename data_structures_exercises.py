@@ -16,7 +16,7 @@ show_run_output = net_connect.send_command("show run")
 
 cisco_cfg = CiscoConfParse(show_run_output.splitlines())
 interfaces_w_ip = cisco_cfg.find_objects_w_child(parentspec=r'^interface', childspec=r'^/s+ip address')
-
+pprint(interfaces_w_ip)
 for interface in interfaces_w_ip:
     print('Interface Line:', interface.text)
     for childline in interface.children:
