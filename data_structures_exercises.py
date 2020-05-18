@@ -19,4 +19,3 @@ with open('w', myfile) as fout:
 with open('r', myfile) as fin:
     device_list = yaml.load(fin)
 pprint(device_list)
-
