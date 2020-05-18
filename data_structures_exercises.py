@@ -26,6 +26,11 @@ router bgp 44
    route-policy ALLOW in
    route-policy ALLOW out
 """
-
+peer_list = []
 cisco_cfg = CiscoConfParse(bgp_config_snippet.splitlines())
-pprint(cisco_cfg.text)
+neighbors = cisco_cfg.find_objects_w_child(parentspec=r'^\s+neighbor')
+for neighbor in neighbors:
+    neighbor_ip = neighbor.text.split()[1]
+    remote_as = neighbor.re_search_children(r'remote-as').split()[1]
+    peer_list.append((neighbor_ip, remote_as))
+pprint(peer_list)
