@@ -18,5 +18,6 @@ cisco_cfg = CiscoConfParse(show_run_output.splitlines())
 interfaces_w_ip = cisco_cfg.find_objects_w_child(parentspec=r'^interface', childspec=r'^\s+ip address')
 for interface in interfaces_w_ip:
     print('Interface Line:', interface.text)
-    for childline in interface.children:
-        print(childline)
+    ip_addresses = interface.re_search_children(r'ip address')
+    for address_line in ip_addresses:
+        print('IP Address Line:', address_line.text)
