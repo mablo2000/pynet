@@ -25,4 +25,4 @@ for interface_info in data:
                       'PORT_TYPE': port_type}
     show_int_status_list.append(interface_dict)
 
-pprint(data)
+pprint(show_int_status_list)
