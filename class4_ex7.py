@@ -13,4 +13,16 @@ data = re_table.ParseText(status_input)
 
 template.close()
 
+show_int_status_list = []
+
+for interface_info in data:
+    port_name, status, vlan, duplex, speed, port_type = interface_info
+    interface_dict = {'PORT_NAME': port_name,
+                      'STATUS': status,
+                      'VLAN': vlan,
+                      'DUPLEX': duplex,
+                      'SPEED': speed,
+                      'PORT_TYPE': port_type}
+    show_int_status_list.append(interface_dict)
+
 pprint(data)
